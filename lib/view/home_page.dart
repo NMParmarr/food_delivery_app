@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.toNamed(RouteGenerator.itemsPage);
+                      Get.toNamed(RouteGenerator.foodPage);
                     },
                     child: Utils.catagory_container(
                         "https://img.freepik.com/premium-vector/tshirt-icon-comic-style-casual-clothes-cartoon-vector-illustration-white-isolated-background-polo-wear-splash-effect-business-concept_157943-6994.jpg",

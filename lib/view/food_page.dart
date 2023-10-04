@@ -1,4 +1,5 @@
 import 'package:first_app/model/getx_controllers.dart';
+import 'package:first_app/route_generator.dart';
 import 'package:first_app/utils/mytext_util.dart';
 import 'package:first_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -421,7 +422,9 @@ class _FoodPageState extends State<FoodPage> {
                       spreadRadius: 1)
                 ]),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(RouteGenerator.filterPage);
+                },
                 icon: Icon(
                   Icons.filter_list_rounded,
                   color: Colors.red,

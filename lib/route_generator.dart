@@ -1,3 +1,4 @@
+import 'package:first_app/view/filter_page.dart';
 import 'package:first_app/view/food_page.dart';
 import 'package:first_app/view/home_page.dart';
 import 'package:first_app/view/items_page.dart';
@@ -9,7 +10,7 @@ class RouteGenerator {
   static const String homePage = '/home';
   static const String foodPage = '/food';
   static const String itemsPage = '/items';
-
+  static const String filterPage = '/filter';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -22,6 +23,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const FoodPage());
       case itemsPage:
         return MaterialPageRoute(builder: (_) => const ItemsPage());
+      case filterPage:
+        return MaterialPageRoute(builder: (_) => const FilterPage());
       default:
         throw const FormatException("Route Not Found..!!");
     }
