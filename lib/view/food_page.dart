@@ -28,45 +28,53 @@ class _FoodPageState extends State<FoodPage> {
   ];
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 217, 217, 217),
-      appBar: Utils.appbar(leading: false),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: Column(
-              children: [
-                Center(
-                  child: MyText(
-                    text: "What would you like to order ??",
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.center,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(255, 217, 217, 217),
+        appBar: Utils.appbar(leading: false),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: Column(
+                children: [
+                  Center(
+                    child: MyText(
+                      text: "What would you like to order ??",
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                ),
-                Utils.sizedBox(height: 5),
+                  Utils.sizedBox(height: 5),
 
-                //search bar and filter button
-                searchBar(),
-                Utils.sizedBox(height: 5),
+                  //search bar and filter button
+                  MySearchBar(searchController: searchController),
+                  Utils.sizedBox(height: 5),
 
-                // list view of food catagory
-                foodCatagoryListview(),
-                Utils.sizedBox(height: 17),
+                  // list view of food catagory
+                  foodCatagoryListview(),
+                  Utils.sizedBox(height: 17),
 
-                //featured restautrants list
-                featuredRestoTitle("Featured Restaurants", true),
-                featuredRestoItems(),
-                Utils.sizedBox(height: Get.height * 0.03),
+                  //featured restautrants list
+                  featuredRestoTitle("Featured Restaurants", true),
+                  featuredRestoItems(),
+                  Utils.sizedBox(height: Get.height * 0.03),
 
-                //popular items list
-                featuredRestoTitle("Popular Items", false),
-                Utils.sizedBox(height: 7),
-                popularItems(),
-                Utils.sizedBox(height: 18),
-              ],
+                  //popular items list
+                  featuredRestoTitle("Popular Items", false),
+                  Utils.sizedBox(height: 7),
+                  popularItems(),
+                  Utils.sizedBox(height: 18),
+                ],
+              ),
             ),
           ),
         ),
@@ -386,27 +394,26 @@ class _FoodPageState extends State<FoodPage> {
 
 ////////////////////////////////
   ///search bar and filter button
+}
 
-  Row searchBar() {
+class MySearchBar extends StatelessWidget {
+  const MySearchBar({
+    super.key,
+    required this.searchController,
+  });
+
+  final TextEditingController searchController;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
-          child: TextFormField(
-            readOnly: true,
-            textAlignVertical: TextAlignVertical.center,
-            controller: searchController,
-            decoration: InputDecoration(
-              alignLabelWithHint: true,
-              constraints: BoxConstraints(maxHeight: 50),
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(style: BorderStyle.none, width: 0),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              hintText: "Find food or restaurant..",
-              fillColor: Colors.white,
-              filled: true,
-            ),
+          child: MySearchField(
+            searchController: searchController,
+            ontap: () {
+              Get.toNamed(RouteGenerator.searchPage);
+            },
           ),
         ),
         Padding(
@@ -437,6 +444,44 @@ class _FoodPageState extends State<FoodPage> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MySearchField extends StatelessWidget {
+  final Function() ontap;
+  final bool readonly;
+  final bool autoFocus;
+  const MySearchField({
+    required this.ontap,
+    super.key,
+    this.autoFocus = false,
+    this.readonly = true,
+    required this.searchController,
+  });
+
+  final TextEditingController searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onTap: ontap,
+      readOnly: readonly,
+      autofocus: autoFocus,
+      textAlignVertical: TextAlignVertical.center,
+      controller: searchController,
+      decoration: InputDecoration(
+        alignLabelWithHint: true,
+        constraints: BoxConstraints(maxHeight: 50),
+        prefixIcon: Icon(Icons.search),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(style: BorderStyle.none, width: 0),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        hintText: "Find food or restaurant..",
+        fillColor: Colors.white,
+        filled: true,
+      ),
     );
   }
 }
