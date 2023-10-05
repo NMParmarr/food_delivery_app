@@ -452,9 +452,13 @@ class MySearchField extends StatelessWidget {
   final Function() ontap;
   final bool readonly;
   final bool autoFocus;
+  final void Function()? onsaved;
+  final String? Function(String?)? validator;
   const MySearchField({
     required this.ontap,
     super.key,
+    this.validator,
+    this.onsaved,
     this.autoFocus = false,
     this.readonly = true,
     required this.searchController,
@@ -465,6 +469,9 @@ class MySearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
+      validator: validator,
+      onEditingComplete: onsaved,
       onTap: ontap,
       readOnly: readonly,
       autofocus: autoFocus,

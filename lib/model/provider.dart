@@ -8,3 +8,23 @@ class PriceRangeProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class SearchProvider extends ChangeNotifier {
+  List<String> searches = [
+    "Asian noodles isnles",
+    "Dominsa Pizza",
+    "Burgers",
+    "Freches Fries",
+    "aaa",
+    "bbb",
+    "ccc",
+  ];
+
+  void addIntoSearch(String value) {
+    String lastSearch = searches[0];
+    if (lastSearch != value) {
+      searches.insert(0, value);
+    }
+    notifyListeners();
+  }
+}

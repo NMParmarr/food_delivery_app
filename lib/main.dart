@@ -8,9 +8,8 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<PriceRangeProvider>(
-        create: (context) => PriceRangeProvider(),
-      ),
-      
+          create: (_) => PriceRangeProvider()),
+      ChangeNotifierProvider<SearchProvider>(create: (_) => SearchProvider())
     ],
     child: MyApp(),
   ));
