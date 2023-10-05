@@ -1,9 +1,7 @@
 import 'package:first_app/model/provider.dart';
 import 'package:first_app/utils/mytext_util.dart';
 import 'package:first_app/utils/utils.dart';
-import 'package:first_app/view/demo.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class FilterPage extends StatefulWidget {
@@ -54,16 +52,10 @@ class _FilterPageState extends State<FilterPage> {
               Utils.sizedBox(),
               Wrap(
                 children: [
-                  cuisionFilterItems(cuisions[0], true, selected: true),
-                  cuisionFilterItems(cuisions[1], true),
-                  cuisionFilterItems(cuisions[2], true),
-                  cuisionFilterItems(cuisions[3], true),
-                  cuisionFilterItems(cuisions[4], true),
-                  cuisionFilterItems(cuisions[5], true),
+                  for (var i in cuisions) cuisionFilterItems(i, true),
                 ],
               ),
 
-              // cuisinesChoicesGrid(itemCount: 6, items: cuisions, isImage: true),
               Utils.sizedBox(),
 
               ////////////////////////////
@@ -73,30 +65,10 @@ class _FilterPageState extends State<FilterPage> {
                 textAlign: TextAlign.left,
               ),
               Wrap(
-                children: [
-                  for (var i in sortBy) cuisionFilterItems(i, false)
-                  // cuisionFilterItems(sortBy[0], false, selected: true),
-                  // cuisionFilterItems(sortBy[1], false),
-                  // cuisionFilterItems(sortBy[2], false),
-                  // cuisionFilterItems(sortBy[3], false),
-                  // cuisionFilterItems(sortBy[4], false),
-                  // cuisionFilterItems(sortBy[5], false),
-                ],
+                children: [for (var i in sortBy) cuisionFilterItems(i, false)],
               ),
 
               Utils.sizedBox(),
-              // cuisinesChoicesGrid(itemCount: 6, items: sortBy),
-              // cuisionFilterItems("Demo54545", false),
-              // Container(
-              //   height: Get.height * 0.144,
-              //   child: ListView.builder(
-              //       shrinkWrap: true,
-              //       scrollDirection: Axis.horizontal,
-              //       itemCount: cuisions.length,
-              //       itemBuilder: (context, index) {
-              //         return cuisionFilterItems(cuisions[index], false);
-              //       }),
-              // )
 
               ///////////////////
               //Rating
@@ -152,7 +124,7 @@ class _FilterPageState extends State<FilterPage> {
                         shadowColor: Colors.red,
                         textColor: Colors.red),
                     actionButton("Apply",
-                        onpress: () => Get.to(Demo()),
+                        onpress: () {},
                         color: Colors.red,
                         shadowColor: Colors.black,
                         textColor: Colors.white)
@@ -212,7 +184,6 @@ class _FilterPageState extends State<FilterPage> {
   Widget cuisionFilterItems(String item, bool isImage,
       {bool selected = false}) {
     return Padding(
-      
       padding: const EdgeInsets.all(4.0),
       child: Container(
         padding: EdgeInsets.all(5),
