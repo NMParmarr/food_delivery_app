@@ -236,12 +236,15 @@ class _FoodPageState extends State<FoodPage> {
           Row(
             children: [
               BuyActionButton(
+                buttonColor: Color.fromARGB(255, 203, 183, 2),
                 text: "Buy",
               ),
               BuyActionButton(
+                buttonColor: Color.fromARGB(255, 203, 183, 2),
                 text: "Cart",
               ),
               BuyActionButton(
+                buttonColor: Color.fromARGB(255, 203, 183, 2),
                 text: "Save",
               ),
             ],
@@ -469,7 +472,6 @@ class MySearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       validator: validator,
       onEditingComplete: onsaved,
       onTap: ontap,
@@ -495,8 +497,18 @@ class MySearchField extends StatelessWidget {
 
 class BuyActionButton extends StatelessWidget {
   final String text;
+  final Color buttonColor;
+  final Color textColor;
+  final double buttonWidth;
+  final double buttonHeight;
+  final double textFontSize;
   const BuyActionButton({
     super.key,
+    this.buttonColor = Colors.yellow,
+    this.textColor = Colors.white,
+    this.buttonHeight = 30,
+    this.buttonWidth = 80,
+    this.textFontSize = 16,
     required this.text,
   });
 
@@ -505,19 +517,19 @@ class BuyActionButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4),
       child: SizedBox(
-        width: 80,
-        height: 30,
+        width: buttonWidth,
+        height: buttonHeight,
         child: ElevatedButton(
           onPressed: () {},
           child: MyText(
             text: text,
-            fontSize: 16,
-            color: Colors.white,
+            fontSize: textFontSize,
+            color: textColor,
           ),
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            backgroundColor: Colors.yellow[900],
+            backgroundColor: buttonColor,
             padding: EdgeInsets.zero,
             // fixedSize: Size(25, 6)
           ),

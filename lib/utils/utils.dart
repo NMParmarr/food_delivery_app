@@ -12,11 +12,11 @@ class Utils extends AppBar {
           IconData icon = Icons.menu,
           Widget? centerChild}) =>
       PreferredSize(
-          preferredSize: Size(100, 90),
-          child: Container(
-            margin: EdgeInsets.only(top: 10),
-            child: Center(
+          preferredSize: leading ? Size(80, 70) : Size(100, 90),
+          child: Center(
+            child: Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -24,7 +24,6 @@ class Utils extends AppBar {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white,

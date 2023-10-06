@@ -9,7 +9,8 @@ void main() {
     providers: [
       ChangeNotifierProvider<PriceRangeProvider>(
           create: (_) => PriceRangeProvider()),
-      ChangeNotifierProvider<SearchProvider>(create: (_) => SearchProvider())
+      ChangeNotifierProvider<SearchProvider>(create: (_) => SearchProvider()),
+      ChangeNotifierProvider<FavouriteProvider>(create: (_) => FavouriteProvider()),
     ],
     child: MyApp(),
   ));
