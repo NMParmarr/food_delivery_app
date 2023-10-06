@@ -12,7 +12,7 @@ class Utils extends AppBar {
           IconData icon = Icons.menu,
           Widget? centerChild}) =>
       PreferredSize(
-          preferredSize: leading ? Size(80, 70) : Size(100, 90),
+          preferredSize: leading ? Size(100, 70) : Size(100, 75),
           child: Center(
             child: Container(
               child: Column(

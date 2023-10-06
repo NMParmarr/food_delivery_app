@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:first_app/model/getx_controllers.dart';
 import 'package:first_app/route_generator.dart';
 import 'package:first_app/utils/mytext_util.dart';
@@ -37,47 +38,71 @@ class _FoodPageState extends State<FoodPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 217, 217, 217),
-        appBar: Utils.appbar(leading: false),
-        body: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: Column(
-                children: [
-                  Center(
-                    child: MyText(
-                      text: "What would you like to order ??",
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Utils.sizedBox(height: 5),
-
-                  //search bar and filter button
-                  MySearchBar(searchController: searchController),
-                  Utils.sizedBox(height: 5),
-
-                  // list view of food catagory
-                  foodCatagoryListview(),
-                  Utils.sizedBox(height: 17),
-
-                  //featured restautrants list
-                  featuredRestoTitle("Featured Restaurants", true),
-                  featuredRestoItems(),
-                  Utils.sizedBox(height: Get.height * 0.03),
-
-                  //popular items list
-                  featuredRestoTitle("Popular Items", false),
-                  Utils.sizedBox(height: 7),
-                  popularItems(),
-                  Utils.sizedBox(height: 18),
-                ],
-              ),
+          // floatingActionButton: FloatingActionButton(onPressed: () {
+          //   Get.to(Demo());
+          // }),
+          backgroundColor: Color.fromARGB(255, 217, 217, 217),
+          appBar: Utils.appbar(leading: false),
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: foodPageBody(),
             ),
           ),
-        ),
+          bottomNavigationBar: ConvexAppBar(
+            initialActiveIndex: 2,
+            backgroundColor: Colors.white,
+            color: Colors.black,
+            activeColor: Colors.red,
+            cornerRadius: 10,
+            curve: Curves.decelerate,
+            elevation: 10,
+            style: TabStyle.fixedCircle,
+            items: [
+              TabItem(icon: Icons.coffee_maker_sharp, title: 'Cookies'),
+              TabItem(icon: Icons.curtains_outlined, title: 'Chef Staff'),
+              TabItem(icon: Icons.home, title: 'Home'),
+              TabItem(icon: Icons.favorite_border, title: 'Favourite'),
+              TabItem(icon: Icons.sync_alt_outlined, title: 'Orders'),
+            ],
+            onTap: (int i) => print('click index=$i'),
+          )),
+    );
+  }
+
+  Padding foodPageBody() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      child: Column(
+        children: [
+          Center(
+            child: MyText(
+              text: "What would you like to order ??",
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Utils.sizedBox(height: 5),
+
+          //search bar and filter button
+          MySearchBar(searchController: searchController),
+          Utils.sizedBox(height: 5),
+
+          // list view of food catagory
+          foodCatagoryListview(),
+          Utils.sizedBox(height: 17),
+
+          //featured restautrants list
+          featuredRestoTitle("Featured Restaurants", true),
+          featuredRestoItems(),
+          Utils.sizedBox(height: Get.height * 0.03),
+
+          //popular items list
+          featuredRestoTitle("Popular Items", false),
+          Utils.sizedBox(height: 7),
+          popularItems(),
+          Utils.sizedBox(height: 18),
+        ],
       ),
     );
   }
